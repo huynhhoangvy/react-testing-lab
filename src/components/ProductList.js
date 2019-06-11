@@ -1,16 +1,19 @@
 import React from "react";
 
 const ProductList = (props) => {
+
+
     return (
         <div>
-            {props.products.map( ({...props}) => {
+            {props.products.map( product => {
                 return (
-                    <ul key={props.id}>
-                        <li>Id: {props.id}<br />
-                        Name: {props.name}<br />
+                    <ul key={product.id}>
+                        <li className="product-item">Id: {product.id}<br />
+                        Name: {product.name}<br />
                         Price: ${
-                            (props.price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) > Math.round((props.price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))) ? (props.price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) : props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                            } usd<br /></li>
+                            (product.price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) > Math.round((product.price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))) ? (product.price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) : product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            } usd<br />
+                            <button onClick={() => props.onAddToCart(product.id)}>Add to Cart</button></li>
                     </ul>
                 )
             })}
